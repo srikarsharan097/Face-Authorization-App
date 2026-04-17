@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Auth App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load face-api.js from local js folder -->
+    <script src="js/face-api.min.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Face Authentication</h1>
+            <p>Secure, fast, and futuristic access</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" id="tab-signup" onclick="switchTab('signup')">Sign Up</div>
+            <div class="tab" id="tab-login" onclick="switchTab('login')">Login</div>
+        </div>
+
+        <div class="video-container" id="video-container">
+            <div class="video-placeholder" id="video-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                    <circle cx="12" cy="13" r="3"></circle>
+                </svg>
+                <span>Loading Models...</span>
+            </div>
+            <!-- Video element (hidden initially) -->
+            <video id="videoElement" autoplay muted playsinline class="hidden"></video>
+            <!-- Overlay wrapper for custom greetings -->
+            <div class="greeting-overlay" id="greeting-overlay">
+                <div class="greeting-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h2 id="greeting-text">Hey there!</h2>
+                <button class="btn" style="width: auto; padding: 0.5rem 1rem;" onclick="resetGreeting()">Continue</button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" autocomplete="off">
+        </div>
+
+        <!-- Dynamic Action Button -->
+        <button class="btn" id="action-btn" onclick="handleAction()" disabled>
+            <span class="loader hidden" id="btn-loader"></span>
+            <span id="btn-text">Initializing...</span>
+        </button>
+
+        <div class="status" id="status-msg">Please wait while models are loading...</div>
+    </div>
+</body>
+</html>
